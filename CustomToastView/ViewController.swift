@@ -11,7 +11,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.showTost(header: "Custom Toast", message: "It gives you more customisation you more customisation optionsgives you more customisation optionsgives you more customisation options.", toastType: .error, duration: .long)
+        }
     }
 
 

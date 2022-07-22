@@ -17,6 +17,9 @@
 		0C3EA67A288A83BC000D272D /* CustomToastViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3EA679288A83BC000D272D /* CustomToastViewTests.swift */; };
 		0C3EA684288A83BC000D272D /* CustomToastViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3EA683288A83BC000D272D /* CustomToastViewUITests.swift */; };
 		0C3EA686288A83BC000D272D /* CustomToastViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3EA685288A83BC000D272D /* CustomToastViewUITestsLaunchTests.swift */; };
+		0C3EA69A288A83F3000D272D /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3EA695288A83F3000D272D /* ToastView.xib */; };
+		0C3EA69B288A83F3000D272D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3EA696288A83F3000D272D /* ToastView.swift */; };
+		0C3EA69D288A83F3000D272D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3EA698288A83F3000D272D /* Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		0C3EA67F288A83BC000D272D /* CustomToastViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomToastViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C3EA683288A83BC000D272D /* CustomToastViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastViewUITests.swift; sourceTree = "<group>"; };
 		0C3EA685288A83BC000D272D /* CustomToastViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0C3EA695288A83F3000D272D /* ToastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
+		0C3EA696288A83F3000D272D /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		0C3EA698288A83F3000D272D /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 		0C3EA65E288A83B9000D272D /* CustomToastView */ = {
 			isa = PBXGroup;
 			children = (
+				0C3EA692288A83F3000D272D /* Source */,
 				0C3EA65F288A83B9000D272D /* AppDelegate.swift */,
 				0C3EA661288A83B9000D272D /* SceneDelegate.swift */,
 				0C3EA663288A83B9000D272D /* ViewController.swift */,
@@ -128,6 +135,24 @@
 				0C3EA685288A83BC000D272D /* CustomToastViewUITestsLaunchTests.swift */,
 			);
 			path = CustomToastViewUITests;
+			sourceTree = "<group>";
+		};
+		0C3EA692288A83F3000D272D /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0C3EA693288A83F3000D272D /* ToastView */,
+				0C3EA698288A83F3000D272D /* Extension.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		0C3EA693288A83F3000D272D /* ToastView */ = {
+			isa = PBXGroup;
+			children = (
+				0C3EA695288A83F3000D272D /* ToastView.xib */,
+				0C3EA696288A83F3000D272D /* ToastView.swift */,
+			);
+			path = ToastView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C3EA66F288A83BC000D272D /* LaunchScreen.storyboard in Resources */,
+				0C3EA69A288A83F3000D272D /* ToastView.xib in Resources */,
 				0C3EA66C288A83BC000D272D /* Assets.xcassets in Resources */,
 				0C3EA667288A83B9000D272D /* Main.storyboard in Resources */,
 			);
@@ -263,7 +289,9 @@
 			files = (
 				0C3EA664288A83B9000D272D /* ViewController.swift in Sources */,
 				0C3EA66A288A83B9000D272D /* CustomToastView.xcdatamodeld in Sources */,
+				0C3EA69D288A83F3000D272D /* Extension.swift in Sources */,
 				0C3EA660288A83B9000D272D /* AppDelegate.swift in Sources */,
+				0C3EA69B288A83F3000D272D /* ToastView.swift in Sources */,
 				0C3EA662288A83B9000D272D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +477,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -477,6 +506,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
