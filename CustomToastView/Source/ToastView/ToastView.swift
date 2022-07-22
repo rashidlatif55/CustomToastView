@@ -47,7 +47,6 @@ class ToastView: UIView {
         circleImg.layer.add(pulseAnimation, forKey: "animateOpacity")
     }
     
-    
     func applyStyle(toastType: ToastType) {
         self.headLabel.textColor = .tintSecondary
         self.msgLabel.textColor = .tintSecondary

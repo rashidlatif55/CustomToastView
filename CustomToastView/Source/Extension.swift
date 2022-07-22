@@ -54,23 +54,23 @@ extension UIViewController {
         }
         
         var toastUIView: UIView?
-            var gravity = CGRect(x: 0.0, y: view.frame.height - 130.0, width: view.frame.width, height: 83.0)
-            switch toastGravity! {
-            case .top: gravity = CGRect(x: 0.0, y: self.topbarHeight + 10, width: view.frame.width, height: 83.0);break
-            case .centre: gravity = CGRect(x: 0.0, y: ((view.frame.height / 2) - 41) , width: view.frame.width, height: 83.0);break
-            case .bottom: gravity = CGRect(x: 0.0, y: view.frame.height - 130.0, width: view.frame.width, height: 83.0);break
-            }
-            
-            let toastView = ToastView(frame: gravity)
-            if pulseEffect! { toastView.addPulseEffect() }
-            toastView.toastContainerView.layer.cornerRadius = CGFloat(toastCornerRadius!)
-            toastView.headLabel.text = header
-            toastView.msgLabel.text = message
-            toastView.applyStyle(toastType: toastType)
-            
-            toastUIView = toastView
-            
-       
+        var gravity = CGRect(x: 0.0, y: view.frame.height - 130.0, width: view.frame.width, height: 83.0)
+        switch toastGravity! {
+        case .top: gravity = CGRect(x: 0.0, y: self.topbarHeight + 10, width: view.frame.width, height: 83.0);break
+        case .centre: gravity = CGRect(x: 0.0, y: ((view.frame.height / 2) - 41) , width: view.frame.width, height: 83.0);break
+        case .bottom: gravity = CGRect(x: 0.0, y: view.frame.height - 130.0, width: view.frame.width, height: 83.0);break
+        }
+        
+        let toastView = ToastView(frame: gravity)
+        if pulseEffect! { toastView.addPulseEffect() }
+        toastView.toastContainerView.layer.cornerRadius = CGFloat(toastCornerRadius!)
+        toastView.headLabel.text = header
+        toastView.msgLabel.text = message
+        toastView.applyStyle(toastType: toastType)
+        
+        toastUIView = toastView
+        
+        
         window?.addSubview(toastUIView!)
         
         UIView.animate(withDuration: 0.7, delay: toastDuration, animations: {
@@ -81,11 +81,11 @@ extension UIViewController {
         
         
     }
- 
+    
     var topbarHeight: CGFloat {
         if #available(iOS 13.0, *) {
             return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
-                (self.navigationController?.navigationBar.frame.height ?? 0.0)
+            (self.navigationController?.navigationBar.frame.height ?? 0.0)
         } else {
             let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
             (self.navigationController?.navigationBar.frame.height ?? 0.0)
