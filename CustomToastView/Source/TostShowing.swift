@@ -1,10 +1,4 @@
-//
-//  Extension.swift
-//  MotionToast
-//
-//  Created by Sameer Nawaz on 10/08/20.
-//  Copyright © 2020 Femargent Inc. All rights reserved.
-//
+
 
 import UIKit
 
@@ -19,6 +13,7 @@ public enum ToastDuration {
     case short
     case medium
     case long
+    case custom(Double)
 }
 
 public enum ToastGravity {
@@ -31,17 +26,40 @@ public enum ToastStyle {
     case style_vibrant
 }
 
-extension UIViewController {
+protocol TostShowing{
     
-    func showTost(header: String, message: String,toastType: ToastType, duration: ToastDuration? = .medium, toastGravity: ToastGravity? = .top, toastCornerRadius: Int? = 10, pulseEffect: Bool? = false){
+    /// Present the Tost
+    /// - Parameters:
+    ///   - header: Title of tost
+    ///   - message: Description of tost
+    ///   - toastType: `ToastType` , success , error, warning, info
+    ///   - duration: `ToastDuration` short, medium,  long and custom. Default will be medium
+    ///   - toastGravity: `ToastGravity` top, center, bottom
+    ///   - toastCornerRadius: default value is 10
+    ///   - pulseEffect: Bool value, if its true it will animate the image view
+    ///   - on: on which UIViewController, it will show under the Navigation controller of the UIViewController.
+    func showTost(header: String, message: String,toastType: ToastType, duration: ToastDuration?, toastGravity: ToastGravity?, toastCornerRadius: Int?, pulseEffect: Bool?,on:UIViewController?)
+}
+
+extension TostShowing {
+    
+    func showTost(header: String, message: String,toastType: ToastType, duration: ToastDuration? = .medium, toastGravity: ToastGravity? = .top, toastCornerRadius: Int? = 10, pulseEffect: Bool? = false, on:UIViewController? = nil){
         
+        var topBarHeight: CGFloat = 0
         var window: UIWindow?
+        
         if #available(iOS 13.0, *) {
             guard let tempWindow = UIApplication.shared.connectedScenes.filter({$0.activationState == .foregroundActive}).map({$0 as? UIWindowScene})
                 .compactMap({$0}).first?.windows.filter({$0.isKeyWindow}).first else { return }
+            
+            topBarHeight = (tempWindow.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) + (on?.navigationController?.navigationBar.frame.height ?? 0.0)
+            
             window = tempWindow
         } else {
             guard let tempWindow : UIWindow = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else {return}
+            
+            topBarHeight = UIApplication.shared.statusBarFrame.size.height + (on?.navigationController?.navigationBar.frame.height ?? 0.0)
+            
             window = tempWindow
         }
         
@@ -50,15 +68,19 @@ extension UIViewController {
         case .short: toastDuration = 2.0;break
         case .medium: toastDuration = 3;break
         case .long: toastDuration = 4.0;break
+        case .custom(let duration): toastDuration = duration
         case .none: break
+            
         }
         
+        guard let window = window else {return}
+        
         var toastUIView: UIView?
-        var gravity = CGRect(x: 0.0, y: view.frame.height - 130.0, width: view.frame.width, height: 83.0)
+        var gravity = CGRect(x: 0.0, y: window.frame.height - 130.0, width: window.frame.width, height: 83.0)
         switch toastGravity! {
-        case .top: gravity = CGRect(x: 0.0, y: self.topbarHeight + 10, width: view.frame.width, height: 83.0);break
-        case .centre: gravity = CGRect(x: 0.0, y: ((view.frame.height / 2) - 41) , width: view.frame.width, height: 83.0);break
-        case .bottom: gravity = CGRect(x: 0.0, y: view.frame.height - 130.0, width: view.frame.width, height: 83.0);break
+        case .top: gravity = CGRect(x: 0.0, y: topBarHeight + 10, width: window.frame.width, height: 83.0);break
+        case .centre: gravity = CGRect(x: 0.0, y: ((window.frame.height / 2) - 41) , width: window.frame.width, height: 83.0);break
+        case .bottom: gravity = CGRect(x: 0.0, y: window.frame.height - 130.0, width: window.frame.width, height: 83.0);break
         }
         
         let toastView = ToastView(frame: gravity)
@@ -70,28 +92,25 @@ extension UIViewController {
         
         toastUIView = toastView
         
+        window.addSubview(toastUIView ?? UIView())
         
-        window?.addSubview(toastUIView!)
+        var timer: Timer?
+        timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(toastDuration), repeats: false, block: { timer in
+            UIView.animate(withDuration: 0.5, animations: {
+                toastUIView?.alpha = 0
+            }) { (_) in
+                toastUIView?.removeFromSuperview()
+            }
+        })
         
-        UIView.animate(withDuration: 0.7, delay: toastDuration, animations: {
-            toastUIView!.alpha = 0
-        }) { (_) in
-            toastUIView!.removeFromSuperview()
+        toastUIView?.addTapGesture {
+            toastUIView?.removeFromSuperview()
+            timer?.invalidate()
         }
         
         
     }
     
-    var topbarHeight: CGFloat {
-        if #available(iOS 13.0, *) {
-            return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
-            (self.navigationController?.navigationBar.frame.height ?? 0.0)
-        } else {
-            let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
-            (self.navigationController?.navigationBar.frame.height ?? 0.0)
-            return topBarHeight
-        }
-    }
 }
 
 
@@ -135,4 +154,23 @@ extension UIColor {
     static let assetLose = UIColor(named: "asset-lose")!
     static let assetGain = UIColor(named: "asset-gain")!
     
+}
+
+extension UIView {
+    
+    func  addTapGesture(action : @escaping ()->Void ){
+        let tap = MyTapGestureRecognizer(target: self , action: #selector(self.handleTap(_:)))
+        tap.action = action
+        tap.numberOfTapsRequired = 1
+        
+        self.addGestureRecognizer(tap)
+        self.isUserInteractionEnabled = true
+        
+    }
+    @objc func handleTap(_ sender: MyTapGestureRecognizer) {
+        sender.action!()
+    }
+}
+class MyTapGestureRecognizer: UITapGestureRecognizer {
+    var action : (()->Void)? = nil
 }

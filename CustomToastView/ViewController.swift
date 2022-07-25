@@ -7,15 +7,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, TostShowing {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.showTost(header: "Custom Toast header", message: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.", toastType: .error, duration: .long)
-        }
+         
     }
 
 
+    @IBAction private func showTost(_ sender: UIButton){
+        self.showTost(header: "Custom Toast header", message: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.", toastType: .error, duration: .custom(2))
+    }
 }
 

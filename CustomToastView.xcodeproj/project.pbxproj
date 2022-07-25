@@ -19,7 +19,7 @@
 		0C3EA686288A83BC000D272D /* CustomToastViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3EA685288A83BC000D272D /* CustomToastViewUITestsLaunchTests.swift */; };
 		0C3EA69A288A83F3000D272D /* ToastView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C3EA695288A83F3000D272D /* ToastView.xib */; };
 		0C3EA69B288A83F3000D272D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3EA696288A83F3000D272D /* ToastView.swift */; };
-		0C3EA69D288A83F3000D272D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3EA698288A83F3000D272D /* Extension.swift */; };
+		0C3EA69D288A83F3000D272D /* TostShowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3EA698288A83F3000D272D /* TostShowing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,7 @@
 		0C3EA685288A83BC000D272D /* CustomToastViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0C3EA695288A83F3000D272D /* ToastView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToastView.xib; sourceTree = "<group>"; };
 		0C3EA696288A83F3000D272D /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
-		0C3EA698288A83F3000D272D /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		0C3EA698288A83F3000D272D /* TostShowing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TostShowing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,7 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				0C3EA693288A83F3000D272D /* ToastView */,
-				0C3EA698288A83F3000D272D /* Extension.swift */,
+				0C3EA698288A83F3000D272D /* TostShowing.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -289,7 +289,7 @@
 			files = (
 				0C3EA664288A83B9000D272D /* ViewController.swift in Sources */,
 				0C3EA66A288A83B9000D272D /* CustomToastView.xcdatamodeld in Sources */,
-				0C3EA69D288A83F3000D272D /* Extension.swift in Sources */,
+				0C3EA69D288A83F3000D272D /* TostShowing.swift in Sources */,
 				0C3EA660288A83B9000D272D /* AppDelegate.swift in Sources */,
 				0C3EA69B288A83F3000D272D /* ToastView.swift in Sources */,
 				0C3EA662288A83B9000D272D /* SceneDelegate.swift in Sources */,
