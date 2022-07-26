@@ -1,10 +1,3 @@
-//
-//  MotionToastView.swift
-//  MotionToast
-//
-//  Created by Sameer Nawaz on 10/08/20.
-//  Copyright © 2020 Femargent Inc. All rights reserved.
-//
 
 import UIKit
 
