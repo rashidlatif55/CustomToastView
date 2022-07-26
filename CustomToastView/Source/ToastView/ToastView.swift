@@ -13,7 +13,6 @@ class ToastView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -49,7 +48,6 @@ class ToastView: UIView {
         
         self.toastContainerView.layer.masksToBounds = true
         self.toastContainerView.layer.borderWidth = 2.0
-        
         
         switch toastType {
         case .success:
